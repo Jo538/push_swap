@@ -1,0 +1,78 @@
+./push_swap
+./push_swap ""
+RETURN NOTHING
+
+./push_swap -1
+./push_swap "-1"
+RETURN NOTHING 
+
+./push_swap one
+./push_swap one
+RETURN "Error" on standard error (fd: 2) + \n
+
+./push_swap -
+./push_swap "-"
+RETURN "Error" on standard error (fd: 2) + \n (?)
+
+./push_swap +
+./push_swap "+" 
+RETURN "Error" on standard error (fd: 2) + \n (?)
+
+./push_swap -2147483648 10 20
+./push_swap "-2147483648 10 20" 
+RETURN NOTHING
+
+./push_swap  -2147483648 20 10
+./push_swap "-2147483648 20 10" 
+RETURN RRA + \n + SA + \n
+
+./push_swap +1
+./push_swap "+1"
+RETURN NOTHING
+
+./push_swap 1 2
+./push_swap "1 2"
+RETURN NOTHING
+
+./push_swap 2 1
+./push_swap "2 1"
+RETURN SA + \n
+
+./push_swap 2 2
+./push_swap "2 2"
+RETURN "Error" on standard error (fd: 2) + \n
+
+./push_swap 1 2 3
+./push_swap "1 2 3"
+RETURN NOTHING
+
+./push_swap 1 -2 3
+./push_swap "1 -2 3"
+RETURN SA + \n
+
+./push_swap 1 5 3
+./push_swap "1 5 3"
+RETURN RRA + \n + SA + \n
+
+./push_swap 1 10 5 20
+./push_swap "1 10 5 20"
+RETURN PB + \n + SA + \n + PA + \n
+
+./push_swap -1 5 10 -5
+./push_swap "-1 5 10 -5"
+RETURN RRA + \n
+
+./push_swap -25 5 -30 -42
+./push_swap "-25 5 -30 -42"
+RETURN RRA + \n + RRA + \n
+
+./push_swap -25 -99 45 -42
+./push_swap "-25 -99 45 -42"
+RETURN SA + \n + RRA + \n + SA + \n
+
+./push_swap -25 -99 45 -42 39
+./push_swap "-25 -99 45 -42 39"
+RETURN SA + \n + ...
+
+./push_swap -10 42 10 -42 -5
+./push_swap "-10 42 10 -42 -5"
