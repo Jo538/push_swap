@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:13:34 by admin             #+#    #+#             */
-/*   Updated: 2026/01/20 12:34:41 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/21 11:45:28 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,60 @@ void	*ft_calloc(size_t count, size_t size)
 	return (memory);
 }
 
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	unsigned int	n;
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	k;
+
+	i = 0;
+	n = ft_strlen(dst);
+	j = ft_strlen(src);
+	if (dstsize <= n)
+		return (dstsize + j);
+	if (j > (dstsize - n - 1))
+		k = dstsize - n - 1;
+	else
+		k = j;
+	while (i < k)
+	{
+			dst[n + i] = src[i];
+			i++;
+	}
+	dst[n + i] = '\0';
+	return (n + j);
+}
+
 char	*ft_strjoin(int argc, char **argv)
 {
 	int	len;
+	int	len1;
 	int	i;
 	char	*strjoin;
 
 	i = 1;
 	len = 0;
 	while (i < argc)
-		len += ft_strlen(argv[i++]);
-	strjoin = (char *)ft_calloc((len + 2), sizeof(char));
+	{
+		len += ft_strlen(argv[i]) + 1;
+		i++;
+	}
+	printf("size being allocated: %d\n", len);
+	strjoin = (char *)ft_calloc(len, sizeof(char));
 	if (strjoin == NULL)
-		return ( NULL);
-	// i = 0;
-	// while (i < len1)
-	// {
-	// 	strjoin[i] = s1[i];
-	// 	i++;
-	// }
-	// strjoin[i++] = ' ';
-	// while (i < len1 + len2 + 1)
-	// {
-	// 	strjoin[i] = s2[i - len1 - 1];
-	// 	i++;
-	// }
-	// strjoin[i] = '\0';
-	// // free(s1);
+		return (NULL);
+	i = 1;
+	len1 = 0;
+	while (i < argc)
+	{
+		len1 += ft_strlen(argv[i]);
+		ft_strlcat(strjoin, argv[i], len);
+		i++;
+		if (i == argc)
+			break;
+		strjoin[len1] = ' ';
+		len1++;
+	}
 	return (strjoin);
 }
