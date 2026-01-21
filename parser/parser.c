@@ -6,14 +6,13 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/19 18:18:49 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/21 12:05:38 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_list	*parser(int argc, char **argv)
 {
-	if (argc == 2)
-		ft_split(argv[1], ' ');
+	ft_strjoin(argc, argv);
 }

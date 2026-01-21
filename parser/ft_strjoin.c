@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:13:34 by admin             #+#    #+#             */
-/*   Updated: 2026/01/21 11:45:28 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/21 12:11:06 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ char	*ft_strjoin(int argc, char **argv)
 	i = 1;
 	len = 0;
 	while (i < argc)
-	{
-		len += ft_strlen(argv[i]) + 1;
-		i++;
-	}
-	printf("size being allocated: %d\n", len);
+		len += ft_strlen(argv[i++]) + 1;
 	strjoin = (char *)ft_calloc(len, sizeof(char));
 	if (strjoin == NULL)
 		return (NULL);
@@ -92,12 +88,10 @@ char	*ft_strjoin(int argc, char **argv)
 	while (i < argc)
 	{
 		len1 += ft_strlen(argv[i]);
-		ft_strlcat(strjoin, argv[i], len);
-		i++;
+		ft_strlcat(strjoin, argv[i++], len);
 		if (i == argc)
 			break;
-		strjoin[len1] = ' ';
-		len1++;
+		strjoin[len1++] = ' ';
 	}
 	return (strjoin);
 }
