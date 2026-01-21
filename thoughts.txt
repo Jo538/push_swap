@@ -1,6 +1,6 @@
 ./push_swap
 ./push_swap ""
-RETURN NOTHING
+RETURN NOTHING --> handled
 
 ./push_swap -1
 ./push_swap "-1"
