@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:03:03 by admin             #+#    #+#             */
-/*   Updated: 2026/01/21 17:04:58 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 10:37:29 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (n);
 }
 
-static int	free_all(char **result, int word)
+int	free_all(char **result, int word)
 {
 	while (result[word - 1] && result)
 	{
@@ -42,7 +42,7 @@ static int	free_all(char **result, int word)
 	return (0);
 }
 
-static int	numwords(char const *s, char c)
+int	numwords(char const *s, char c)
 {
 	int	cur;
 	int	word_num;
@@ -58,7 +58,7 @@ static int	numwords(char const *s, char c)
 	return (word_num);
 }
 
-static int	split_words(char **result, char const *s, char c, int word)
+int	split_words(char **result, char const *s, char c, int word)
 {
 	int	start_cur;
 	int	end_cur;

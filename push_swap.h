@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 10:00:04 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 16:45:15 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 typedef struct s_list
 {
-	int				data;
+	int				number;
 	struct s_list	*next;
 	struct s_list	*previous;
 }	t_list;
 
 // MAIN FUNCTION //
-t_list	*parser(int argc, char **argv);
+t_list	**parser(int argc, char **argv);
 void	turk_sort(t_list **stack_a);
 
 // PARSER FUNCTION //
@@ -34,12 +34,16 @@ size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int	is_valid_number(char *str);
+long	ft_atoi(const char *str);
+int	check_duplicates(int *array_of_numbers, int size_of_array);
+t_list	*create_node(int num);
+t_list *insert_node_at_end(t_list **head_of_my_list, int num);
 
 // SPLIT FUNCTION FOR PARSER //
-// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-// static int	free_all(char **result, int word);
-// static int	numwords(char const *s, char c);
-// static int	split_words(char **result, char const *s, char c, int word);
-// char	**ft_split(char const *s, char c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+int	free_all(char **result, int word);
+int	numwords(char const *s, char c);
+int	split_words(char **result, char const *s, char c, int word);
+char	**ft_split(char const *s, char c);
 
 #endif
