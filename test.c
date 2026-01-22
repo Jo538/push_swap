@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/21 17:13:42 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 10:13:36 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(void)
 	
 	#ifdef IS_VALID_NUMBER_TEST
 
-	char *string = "24";
+	char *string = "-+24";
 	int result = is_valid_number(string);
 	printf("%d\n", result);
 	

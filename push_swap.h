@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/21 17:06:56 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 10:00:04 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int	is_valid_number(char *str);
 
 // SPLIT FUNCTION FOR PARSER //
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-static int	free_all(char **result, int word);
-static int	numwords(char const *s, char c);
-static int	split_words(char **result, char const *s, char c, int word);
-char	**ft_split(char const *s, char c);
+// size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+// static int	free_all(char **result, int word);
+// static int	numwords(char const *s, char c);
+// static int	split_words(char **result, char const *s, char c, int word);
+// char	**ft_split(char const *s, char c);
 
 #endif
