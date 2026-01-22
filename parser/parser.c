@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 18:12:42 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 18:35:09 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	insert_node_at_end(t_list **head_of_my_list, t_list **end_of_my_list, int n
 	}
 	*end_of_my_list = new_node;
 }
-t_list	*parser(int argc, char **argv)
+t_stack	*parser(int argc, char **argv)
 {
 	char	*concatenated_string_of_numbers;
 	char	**split_string_of_numbers;
@@ -120,7 +120,11 @@ t_list	*parser(int argc, char **argv)
 	long	*array_of_longs;
 	t_list	*head_of_my_list;
 	t_list	*end_of_my_list;
-		
+	t_stack	*stack_a;
+	
+	stack_a = malloc(sizeof(t_stack));
+	if (!stack_a)
+		return (NULL);
 	separator = ' ';
 	concatenated_string_of_numbers = ft_strjoin(argc, argv);
 	split_string_of_numbers = ft_split(concatenated_string_of_numbers, separator);
@@ -152,9 +156,11 @@ t_list	*parser(int argc, char **argv)
 	end_of_my_list = NULL;
 	while (j < i)
 	{
-		insert_node_at_end(&head_of_my_list, &end_of_my_list, array_of_longs[i]);
-		i++;
+		insert_node_at_end(&head_of_my_list, &end_of_my_list, array_of_longs[j]);
+		j++;
 	}
-	return (head_of_my_list);
+	stack_a -> head = head_of_my_list;
+	stack_a -> end = end_of_my_list;
+	return (stack_a);
 }
 

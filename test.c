@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 18:08:57 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 18:37:48 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,14 @@ int	main(void)
 	argv[0] = "./a.out";
 	argv[1] = "1";
 	argv[2] = "-1 35";
-	argv[3] = "-2147483649";
+	argv[3] = "-2147483648";
 	// argv[4] = "4";
 	argv[5] = NULL;
 	
-	t_list *head_of_my_list = parser(argc, argv);
-	t_list *temp_from_head;
-	t_list *temp_from_end;
+	t_stack *stack_a = parser(argc, argv);
+	t_list *temp_from_head = stack_a -> head;
+	t_list *temp_from_end = stack_a -> end;
 	
-	temp_from_head = head_of_my_list;
 	while (temp_from_head)
 	{
 		printf("address of this node: %p\n", temp_from_head);

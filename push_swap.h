@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 18:04:55 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 18:32:13 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@ typedef struct s_list
 	struct s_list	*previous;
 }	t_list;
 
+typedef struct s_task
+{
+	t_list	*head;
+	t_list	*end;
+} t_stack;
+
 // MAIN FUNCTION //
-t_list	*parser(int argc, char **argv);
+t_stack	*parser(int argc, char **argv);
 void	turk_sort(t_list **stack_a);
 
 // PARSER FUNCTION //
