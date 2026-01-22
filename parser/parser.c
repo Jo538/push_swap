@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 17:00:35 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 17:23:28 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ long	ft_atoi(const char *str)
 	return (sign * num);
 }
 
-int	check_duplicates(int *array_of_numbers, int size_of_array)
+int	check_duplicates(long *array_of_numbers, int size_of_array)
 {
 	int	i;
 	int	j;
@@ -124,21 +124,29 @@ t_list	**parser(int argc, char **argv)
 	while (split_string_of_numbers[i])
 	{
 		if (is_valid_number(split_string_of_numbers[i]) == 0)
+		// Must free all mallocs from ft_split if not valid list of numbers
 			return (NULL);
 		i++;
 	}
 	array_of_longs = ft_calloc(i, sizeof(long));
 	if (!array_of_longs)
+	// Must free all mallocs from ft_split
 		return (NULL);
 	j = 0;
 	while (j < i)
 	{
 		array_of_longs[j] = ft_atoi(split_string_of_numbers[j]);
+		free(split_string_of_numbers[i]);
+		split_string_of_numbers[i] = NULL;
 		printf("number %d: %ld\n", j, array_of_longs[j]);
 		j++;
-	} 
-	
+	}
+	free(split_string_of_numbers);
+	split_string_of_numbers = NULL;
+	if (check_duplicates(array_of_longs, i) == 1)
+		return (free(array_of_longs), array_of_longs = NULL, NULL);
 	return (NULL);
 	
 // add a part to check if number is or is not an int	
 }
+

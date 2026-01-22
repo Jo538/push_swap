@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 16:45:15 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 17:22:18 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_calloc(size_t count, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int	is_valid_number(char *str);
 long	ft_atoi(const char *str);
-int	check_duplicates(int *array_of_numbers, int size_of_array);
+int	check_duplicates(long *array_of_numbers, int size_of_array);
 t_list	*create_node(int num);
 t_list *insert_node_at_end(t_list **head_of_my_list, int num);
 
