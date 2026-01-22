@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 17:23:28 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 18:12:42 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ long	ft_atoi(const char *str)
 	return (sign * num);
 }
 
-int	check_duplicates(long *array_of_numbers, int size_of_array)
+int	check_duplicates_and_limits(long *array_of_numbers, int size_of_array)
 {
 	int	i;
 	int	j;
@@ -63,6 +63,8 @@ int	check_duplicates(long *array_of_numbers, int size_of_array)
 	i = 0;
 	while (i < size_of_array)
 	{
+		if (array_of_numbers[i] < INT_MIN || array_of_numbers[i] > INT_MAX)
+			return (1);
 		j = 1;
 		while (j < (size_of_array - i))
 		{
@@ -88,14 +90,16 @@ t_list	*create_node(int num)
 	return (new_node);
 }
 
-t_list *insert_node_at_end(t_list **head_of_my_list, int num)
+void	insert_node_at_end(t_list **head_of_my_list, t_list **end_of_my_list, int num)
 {
 	t_list	*temp;
-	t_list	*end;
 
 	t_list	*new_node = create_node(num);
 	if (!(*head_of_my_list))
+	{
 		*head_of_my_list = new_node;
+		*end_of_my_list = new_node;
+	}
 	else
 	{
 		temp = *head_of_my_list;
@@ -104,10 +108,9 @@ t_list *insert_node_at_end(t_list **head_of_my_list, int num)
 		temp -> next = new_node;
 		temp -> next -> previous = temp;
 	}
-	end = new_node;
-	return (end);
+	*end_of_my_list = new_node;
 }
-t_list	**parser(int argc, char **argv)
+t_list	*parser(int argc, char **argv)
 {
 	char	*concatenated_string_of_numbers;
 	char	**split_string_of_numbers;
@@ -115,7 +118,9 @@ t_list	**parser(int argc, char **argv)
 	int		i;
 	int		j;
 	long	*array_of_longs;
-	
+	t_list	*head_of_my_list;
+	t_list	*end_of_my_list;
+		
 	separator = ' ';
 	concatenated_string_of_numbers = ft_strjoin(argc, argv);
 	split_string_of_numbers = ft_split(concatenated_string_of_numbers, separator);
@@ -124,29 +129,32 @@ t_list	**parser(int argc, char **argv)
 	while (split_string_of_numbers[i])
 	{
 		if (is_valid_number(split_string_of_numbers[i]) == 0)
-		// Must free all mallocs from ft_split if not valid list of numbers
-			return (NULL);
+			return (free_all(split_string_of_numbers, i), NULL);
 		i++;
 	}
 	array_of_longs = ft_calloc(i, sizeof(long));
 	if (!array_of_longs)
-	// Must free all mallocs from ft_split
-		return (NULL);
+		return (free_all(split_string_of_numbers, i), NULL);
 	j = 0;
 	while (j < i)
 	{
 		array_of_longs[j] = ft_atoi(split_string_of_numbers[j]);
 		free(split_string_of_numbers[i]);
 		split_string_of_numbers[i] = NULL;
-		printf("number %d: %ld\n", j, array_of_longs[j]);
 		j++;
 	}
 	free(split_string_of_numbers);
 	split_string_of_numbers = NULL;
-	if (check_duplicates(array_of_longs, i) == 1)
+	if (check_duplicates_and_limits(array_of_longs, i) == 1)
 		return (free(array_of_longs), array_of_longs = NULL, NULL);
-	return (NULL);
-	
-// add a part to check if number is or is not an int	
+	j = 0;
+	head_of_my_list = NULL;
+	end_of_my_list = NULL;
+	while (j < i)
+	{
+		insert_node_at_end(&head_of_my_list, &end_of_my_list, array_of_longs[i]);
+		i++;
+	}
+	return (head_of_my_list);
 }
 

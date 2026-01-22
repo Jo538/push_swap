@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 17:22:58 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/22 18:08:57 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,17 @@ int	main(void)
 	#ifdef INSERT_NODE_AT_END_TEST
 
 	t_list *head_of_my_list = NULL;
+	t_list *end_of_my_list = NULL;
 	t_list *temp_from_head;
+	t_list *temp_from_end;
+	
 	int num1 = 42;
 	int num2 = 36;
 	
-	t_list *temp_from_end = insert_node_at_end(&head_of_my_list, num1);
-	temp_from_end = insert_node_at_end(&head_of_my_list, num2);
+	insert_node_at_end(&head_of_my_list, &end_of_my_list, num1);
+	insert_node_at_end(&head_of_my_list, &end_of_my_list,num2);
 	temp_from_head = head_of_my_list;
+	temp_from_end = end_of_my_list;
 	while (temp_from_head)
 	{
 		printf("address of this node: %p\n", temp_from_head);
@@ -128,7 +132,28 @@ int	main(void)
 	// argv[4] = "4";
 	argv[5] = NULL;
 	
-	parser(argc, argv);
+	t_list *head_of_my_list = parser(argc, argv);
+	t_list *temp_from_head;
+	t_list *temp_from_end;
+	
+	temp_from_head = head_of_my_list;
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %d\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
+		temp_from_head = temp_from_head -> next;
+	}
+
+	while (temp_from_end)
+	{
+		printf("address of this node: %p\n", temp_from_end);	
+		printf("previous: %p\n", temp_from_end -> previous);
+		printf("number: %d\n", temp_from_end -> number);
+		printf("next: %p\n\n", temp_from_end -> next);
+		temp_from_end = temp_from_end -> previous;
+	}
 
 	#endif
 }
