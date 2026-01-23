@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 18:37:48 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 17:07:22 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,16 @@ int	main(void)
 	
 	#ifdef IS_VALID_NUMBER_TEST
 
-	char *string = "-+24";
-	int result = is_valid_number(string);
-	printf("%d\n", result);
+	int argc = 4;
+	char **argv = NULL;
+	argv = ft_calloc(argc, sizeof(char *));
+	argv[0] = "-1";
+	argv[1] = "-25";
+	argv[2] = "3";
+	argv[3] = NULL;
+
+	int result = is_valid_number(argv, argc - 1);
+	printf("Result: %d\n", result);
 	
 	#endif
 
@@ -57,9 +64,37 @@ int	main(void)
 
 	#ifdef FT_ATOI_TEST
 
-	char *str = "1";
-	long result = ft_atoi(str);
-	printf("%ld\n", result);
+	char *test_strings[] = {"-1", "-25", "3", "2147483647", "-2147483649"};
+	int count = 5;
+	int i = 0;
+	long	*result;
+	char **argv = ft_calloc(count + 1, sizeof(char *));
+	
+	// Allocate and copy each string
+	while (i < count)
+	{
+		int len = 0;
+		while (test_strings[i][len])
+			len++;
+		argv[i] = ft_calloc(len + 1, sizeof(char));
+		int j = 0;
+		while (j <= len)
+		{
+			argv[i][j] = test_strings[i][j];
+			j++;
+		}
+		i++;
+	}
+	argv[count] = NULL;
+	
+	// Test ft_atoi on each string
+	i = 0;
+	result = ft_atoi(argv, count);
+	while (i < count)
+	{
+		printf("Number: %ld\n", result[i]);
+		i++;
+	}
 	
 	#endif
 
