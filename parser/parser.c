@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 17:15:27 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 18:01:06 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	check_duplicates_and_limits(long *array_of_numbers, int size_of_array)
 	return (0);
 }
 
-t_list	*create_node(int num)
+t_list	*create_node(long num)
 {
 	t_list	*new_node;
 	
@@ -102,44 +102,43 @@ t_list	*create_node(int num)
 	return (new_node);
 }
 
-void	insert_node_at_end(t_list **head_of_my_list, t_list **end_of_my_list, int num)
+t_stack	*create_stack(long *array_of_longs)
 {
 	t_list	*temp;
-
-	t_list	*new_node = create_node(num);
-	if (!(*head_of_my_list))
+	t_list	*new_node;
+	t_stack	*stack;
+	int	i;
+	
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	new_node = create_node(array_of_longs[0]);
+	stack -> head = new_node;
+	i = 1;
+	while (array_of_longs[i])
 	{
-		*head_of_my_list = new_node;
-		*end_of_my_list = new_node;
-	}
-	else
-	{
-		temp = *head_of_my_list;
-		while (temp -> next)
-			temp = temp -> next;
+		new_node = create_node(array_of_longs[i]);
+		temp = stack -> head;
+			while (temp -> next)
+				temp = temp -> next;
 		temp -> next = new_node;
 		temp -> next -> previous = temp;
+		i++;
 	}
-	*end_of_my_list = new_node;
+	stack -> tail = new_node;
+	return (stack);
 }
+
 t_stack	*parser(int argc, char **argv)
 {
 	char	*concatenated_string_of_numbers;
 	char	**split_string_of_numbers;
-	char	separator;
 	int		i;
-	// int		j;
-	// long	*array_of_longs;
-	// t_list	*head_of_my_list;
-	// t_list	*end_of_my_list;
+	long	*array_of_longs;
 	t_stack	*stack_a;
 	
-	stack_a = malloc(sizeof(t_stack));
-	if (!stack_a)
-		return (NULL);
-	separator = ' ';
 	concatenated_string_of_numbers = ft_strjoin(argc, argv);
-	split_string_of_numbers = ft_split(concatenated_string_of_numbers, separator);
+	split_string_of_numbers = ft_split(concatenated_string_of_numbers, ' ');
 
 	i = 0;
 	while (split_string_of_numbers[i])
@@ -148,31 +147,16 @@ t_stack	*parser(int argc, char **argv)
 	if (is_valid_number(split_string_of_numbers, i) == 0)
 		return (NULL);
 	
-	// if (!array_of_longs)
-	// 	return (NULL);
-	// j = 0;
-	// while (j < i)
-	// {
-	// 	array_of_longs[j] = ft_atoi(split_string_of_numbers[j]);
-	// 	free(split_string_of_numbers[i]);
-	// 	split_string_of_numbers[i] = NULL;
-	// 	j++;
-	// }
-	// free(split_string_of_numbers);
-	// split_string_of_numbers = NULL;
-	// if (check_duplicates_and_limits(array_of_longs, i) == 1)
-	// 	return (free(array_of_longs), array_of_longs = NULL, NULL);
-	// j = 0;
-	// head_of_my_list = NULL;
-	// end_of_my_list = NULL;
-	// while (j < i)
-	// {
-	// 	insert_node_at_end(&head_of_my_list, &end_of_my_list, array_of_longs[j]);
-	// 	j++;
-	// }
-	// stack_a -> head = head_of_my_list;
-	// stack_a -> end = end_of_my_list;
-	// return (stack_a);
-	return (NULL);
+	array_of_longs = ft_atoi(split_string_of_numbers, i);
+	if (!array_of_longs)
+		return (NULL);
+
+	if (check_duplicates_and_limits(array_of_longs, i) == 1)
+		return (free(array_of_longs), array_of_longs = NULL, NULL);
+
+	stack_a = create_stack(array_of_longs);
+	if (!stack_a)
+		return (NULL);
+	return (stack_a);
 }
 

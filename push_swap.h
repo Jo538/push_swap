@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 16:41:04 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 17:51:56 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 typedef struct s_task
 {
 	t_list	*head;
-	t_list	*end;
+	t_list	*tail;
 } t_stack;
 
 // MAIN FUNCTION //
@@ -45,8 +45,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 int	is_valid_number(char **split_string_of_numbers, int words_count);
 long	*ft_atoi(char **split_string_of_numbers, int words_count);
 int	check_duplicates_and_limits(long *array_of_numbers, int size_of_array);
-t_list	*create_node(int num);
-void	insert_node_at_end(t_list **head_of_my_list, t_list **end_of_my_list, int num);
+t_list	*create_node(long num);
+t_stack	*create_stack(long *array_of_longs);
 
 // SPLIT FUNCTION FOR PARSER //
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

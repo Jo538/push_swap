@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 17:07:22 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 17:54:24 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,26 @@ int	main(void)
 	
 	#endif
 
-	#ifdef INSERT_NODE_AT_END_TEST
+	#ifdef CREATE_STACK_TEST
 
-	t_list *head_of_my_list = NULL;
-	t_list *end_of_my_list = NULL;
 	t_list *temp_from_head;
 	t_list *temp_from_end;
 	
-	int num1 = 42;
-	int num2 = 36;
+	long list_of_longs[] = {-1, 42, 36};
+	int len = 3;
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	t_stack *stack = create_stack(array_of_longs);
 	
-	insert_node_at_end(&head_of_my_list, &end_of_my_list, num1);
-	insert_node_at_end(&head_of_my_list, &end_of_my_list,num2);
-	temp_from_head = head_of_my_list;
-	temp_from_end = end_of_my_list;
+	free(array_of_longs);
+	
+	temp_from_head = stack -> head;
+	temp_from_end = stack -> tail;
 	while (temp_from_head)
 	{
 		printf("address of this node: %p\n", temp_from_head);
