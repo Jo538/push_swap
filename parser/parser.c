@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:05:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 18:32:33 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 19:02:08 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	is_valid_number(char **split_string, int words_count)
 
 long	*ft_atoi(char **split_string, int words_count)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	long	num;
 	long	sign;
 	long	*array_of_longs;
@@ -92,7 +92,7 @@ int	find_duplicates_and_limits(long *array_of_numbers, int size_of_array)
 t_list	*create_node(long num)
 {
 	t_list	*new_node;
-	
+
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
@@ -107,61 +107,26 @@ t_stack	*create_stack(long *array_of_longs, int size)
 	t_list	*temp;
 	t_list	*new_node;
 	t_stack	*stack;
-	int	i;
-	
+	int		i;
+
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
-		return (NULL);
+		return (free(array_of_longs), NULL);
 	new_node = create_node(array_of_longs[0]);
+	if (!new_node)
+		return (free(stack), free(array_of_longs), NULL);
 	stack -> head = new_node;
 	i = 1;
 	while (i < size)
 	{
-		new_node = create_node(array_of_longs[i]);
+		new_node = create_node(array_of_longs[i++]);
+		if (!new_node)
+			return (free(stack), free(array_of_longs), NULL);
 		temp = stack -> head;
-			while (temp -> next)
-				temp = temp -> next;
+		while (temp -> next)
+			temp = temp -> next;
 		temp -> next = new_node;
 		temp -> next -> previous = temp;
-		i++;
 	}
-	stack -> tail = new_node;
-	return (stack);
+	return (stack -> tail = new_node, free(array_of_longs), stack);
 }
-
-t_stack	*parser(int argc, char **argv)
-{
-	char	*concatenated_string;
-	char	**split_string;
-	int		i;
-	long	*array_of_longs;
-	t_stack	*stack_a;
-	
-	concatenated_string = ft_strjoin(argc, argv);
-	if (!concatenated_string)
-		return (NULL);
-
-	split_string = ft_split(concatenated_string, ' ');
-	if (!split_string)
-		return (NULL);
-
-	i = 0;
-	while (split_string[i])
-		i++;
-	
-	if (is_valid_number(split_string, i) == 0)
-		return (NULL);
-	
-	array_of_longs = ft_atoi(split_string, i);
-	if (!array_of_longs)
-		return (NULL);
-
-	if (find_duplicates_and_limits(array_of_longs, i) == 1)
-		return (free(array_of_longs), NULL);
-
-	stack_a = create_stack(array_of_longs, i);
-	if (!stack_a)
-		return (NULL);
-	return (stack_a);
-}
-

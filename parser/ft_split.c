@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:03:03 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 18:21:09 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 19:19:29 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 int	free_all(char **result, int word)
 {
-	while (result[word - 1] && result)
+	int	i;
+
+	i = 0;
+	while (i < word)
 	{
-		free(result[word]);
-		word--;
+		free(result[i]);
+		i++;
 	}
 	free(result);
 	return (0);

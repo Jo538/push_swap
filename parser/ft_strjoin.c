@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:13:34 by admin             #+#    #+#             */
-/*   Updated: 2026/01/21 12:11:06 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 18:45:42 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		k = j;
 	while (i < k)
 	{
-			dst[n + i] = src[i];
-			i++;
+		dst[n + i] = src[i];
+		i++;
 	}
 	dst[n + i] = '\0';
 	return (n + j);
@@ -71,9 +71,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 char	*ft_strjoin(int argc, char **argv)
 {
-	int	len;
-	int	len1;
-	int	i;
+	int		len;
+	int		len1;
+	int		i;
 	char	*strjoin;
 
 	i = 1;
@@ -90,7 +90,7 @@ char	*ft_strjoin(int argc, char **argv)
 		len1 += ft_strlen(argv[i]);
 		ft_strlcat(strjoin, argv[i++], len);
 		if (i == argc)
-			break;
+			break ;
 		strjoin[len1++] = ' ';
 	}
 	return (strjoin);
