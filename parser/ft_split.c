@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 17:03:03 by admin             #+#    #+#             */
-/*   Updated: 2026/01/22 10:37:29 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 18:21:09 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	numwords(char const *s, char c)
 	return (word_num);
 }
 
-int	split_words(char **result, char const *s, char c, int word)
+int	split_words(char **result, char *s, char c, int word)
 {
 	int	start_cur;
 	int	end_cur;
@@ -83,7 +83,7 @@ int	split_words(char **result, char const *s, char c, int word)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**result;
 
@@ -91,8 +91,8 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
 	if (!result)
-		return (NULL);
+		return (free(s), NULL);
 	if (!split_words(result, s, c, 0))
-		return (NULL);
-	return (result);
+		return (free(s), NULL);
+	return (free(s), result);
 }

@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 17:54:24 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/23 18:38:16 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,13 +170,18 @@ int	main(void)
 	argv[1] = "1";
 	argv[2] = "-1 35";
 	argv[3] = "-2147483648";
-	// argv[4] = "4";
-	argv[5] = NULL;
+	argv[4] = NULL;  // Fixed: was argv[5]
 	
 	t_stack *stack_a = parser(argc, argv);
 	t_list *temp_from_head = stack_a -> head;
-	t_list *temp_from_end = stack_a -> end;
+	t_list *temp_from_end = stack_a -> tail;
 	
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %d\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
 	while (temp_from_head)
 	{
 		printf("address of this node: %p\n", temp_from_head);
@@ -186,6 +191,8 @@ int	main(void)
 		temp_from_head = temp_from_head -> next;
 	}
 
+	printf("\n=== Traversing from tail ===\n\n");
+	
 	while (temp_from_end)
 	{
 		printf("address of this node: %p\n", temp_from_end);	
@@ -194,6 +201,18 @@ int	main(void)
 		printf("next: %p\n\n", temp_from_end -> next);
 		temp_from_end = temp_from_end -> previous;
 	}
-
+	
+	// Free the linked list properly
+	temp_from_head = stack_a -> head;
+	while (temp_from_head)
+	{
+		t_list *next = temp_from_head -> next;
+		free(temp_from_head);
+		temp_from_head = next;
+	}
+	
+	free(stack_a);
+	free(argv);
+	}	
 	#endif
 }
