@@ -6,11 +6,11 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:18:09 by admin             #+#    #+#             */
-/*   Updated: 2026/01/25 12:45:22 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 14:13:32 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	swap_one(t_list **head)
 {

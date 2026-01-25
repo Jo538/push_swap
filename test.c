@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/25 12:46:21 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 15:03:59 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,118 @@ int	main(void)
 		printf("number: %ld\n", temp_from_end -> number);
 		printf("next: %p\n\n", temp_from_end -> next);
 		temp_from_end = temp_from_end -> previous;
+	}
+
+	#endif
+
+	#ifdef PUSH_TEST
+
+	t_list *temp_from_head_a;
+	t_list *temp_from_end_a;
+	t_list *temp_from_head_b;
+	t_list *temp_from_end_b;	
+
+	
+	long list_of_longs_a[] = {1, 2, 3, 4};
+	int len_a = 4;
+
+	long list_of_longs_b[] = {5, 6, 7};
+	int len_b = 3;
+	
+	long *array_of_longs_a = ft_calloc(len_a, sizeof(long));
+	long *array_of_longs_b = ft_calloc(len_b, sizeof(long));
+
+	int i = 0;
+	while (i < len_a)
+	{
+		array_of_longs_a[i] = list_of_longs_a[i];
+		i++;
+	}
+	i = 0;
+	while (i < len_b)
+	{
+		array_of_longs_b[i] = list_of_longs_b[i];
+		i++;
+	}
+	
+	t_stack *stack_a = create_stack(array_of_longs_a, len_a);
+	t_stack *stack_b = create_stack(array_of_longs_b, len_b);
+	
+	// free(array_of_longs);
+	
+	temp_from_head_a = stack_a -> head;
+	temp_from_end_a = stack_a -> tail;
+	temp_from_head_b = stack_b -> head;
+	temp_from_end_b = stack_b -> tail;	
+
+	printf("%s\n\n", "List before the push");
+	printf("%s\n\n", "STACK_A");
+	while (temp_from_head_a)
+	{
+		printf("address of this node: %p\n", temp_from_head_a);
+		printf("previous: %p\n", temp_from_head_a -> previous);
+		printf("number: %ld\n", temp_from_head_a -> number);
+		printf("next: %p\n\n", temp_from_head_a -> next);
+		temp_from_head_a = temp_from_head_a -> next;
+	}
+
+	printf("\n\n%s\n\n", "STACK_B");
+	
+	while (temp_from_head_b)
+	{
+		printf("address of this node: %p\n", temp_from_head_b);
+		printf("previous: %p\n", temp_from_head_b -> previous);
+		printf("number: %ld\n", temp_from_head_b -> number);
+		printf("next: %p\n\n", temp_from_head_b -> next);
+		temp_from_head_b = temp_from_head_b -> next;
+	}
+
+	
+	push(&(stack_a -> head), &(stack_b -> head));
+
+	printf("\n\n%s\n\n", "List after the push");
+
+	temp_from_head_a = stack_a -> head;
+	temp_from_head_b = stack_b -> head;
+
+	printf("%s\n\n", "STACK_A");
+	
+	while (temp_from_head_a)
+	{
+		printf("address of this node: %p\n", temp_from_head_a);
+		printf("previous: %p\n", temp_from_head_a -> previous);
+		printf("number: %ld\n", temp_from_head_a -> number);
+		printf("next: %p\n\n", temp_from_head_a -> next);
+		temp_from_head_a = temp_from_head_a -> next;
+	}
+
+	while (temp_from_end_a)
+	{
+		printf("address of this node: %p\n", temp_from_end_a);	
+		printf("previous: %p\n", temp_from_end_a -> previous);
+		printf("number: %ld\n", temp_from_end_a -> number);
+		printf("next: %p\n\n", temp_from_end_a -> next);
+		temp_from_end_a = temp_from_end_a -> previous;
+	}
+
+	printf("%s\n\n", "STACK_B");
+	
+	while (temp_from_head_b)
+	{
+		printf("address of this node: %p\n", temp_from_head_b);
+		printf("previous: %p\n", temp_from_head_b -> previous);
+		printf("number: %ld\n", temp_from_head_b -> number);
+		printf("next: %p\n\n", temp_from_head_b -> next);
+		temp_from_head_b = temp_from_head_b -> next;
+	}
+
+	while (temp_from_end_b)
+	{
+		printf("address of this node: %p\n", temp_from_end_b);	
+		printf("previous: %p\n", temp_from_end_b -> previous);
+		printf("number: %ld\n", temp_from_end_b -> number);
+		printf("next: %p\n\n", temp_from_end_b -> next);
+		temp_from_end_b = temp_from_end_b -> previous;
 	}
 
 	#endif
