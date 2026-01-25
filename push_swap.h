@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/25 12:33:30 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 12:44:33 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ char	**ft_split(char *s, char c);
 
 // OPERATIONS
 
-void	swap(t_list **head, char *swap_type);
+void	swap_one(t_list **head);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:18:09 by admin             #+#    #+#             */
-/*   Updated: 2026/01/25 12:35:52 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 12:45:22 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_list **head, char *swap_type)
+void	swap_one(t_list **head)
 {
 	t_list	*temp;
 
@@ -29,7 +29,11 @@ void	swap_a(t_list **head, char *swap_type)
 	temp -> previous = *head;
 	(*head)-> next = temp;
 	(*head)-> previous = NULL;
-	
-	write(1, swap_type, 2);
-	write(1, "\n", 1);
+}
+
+void	swap_both(t_list **head_a, t_list **head_b)
+{
+	swap_one(head_a);
+	swap_one(head_b);
+	write(1, "ss\n", 3);
 }
