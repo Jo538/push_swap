@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 18:38:16 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 12:20:44 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,58 @@ int	main(void)
 	free(stack_a);
 	free(argv);
 	}	
+	#endif
+
+	#ifdef SWAP_A_TEST
+
+	t_list *temp_from_head;
+	t_list *temp_from_end;
+	
+	long list_of_longs[] = {};
+	int len = 0;
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	t_stack *stack = create_stack(array_of_longs, len);
+	
+	// free(array_of_longs);
+	
+	temp_from_head = stack -> head;
+	temp_from_end = stack -> tail;
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %ld\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
+		temp_from_head = temp_from_head -> next;
+	}
+
+	swap_a(&(stack -> head));
+
+	printf("%s\n\n", "List after the swap");
+	temp_from_head = stack -> head;
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %ld\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
+		temp_from_head = temp_from_head -> next;
+	}
+
+	while (temp_from_end)
+	{
+		printf("address of this node: %p\n", temp_from_end);	
+		printf("previous: %p\n", temp_from_end -> previous);
+		printf("number: %ld\n", temp_from_end -> number);
+		printf("next: %p\n\n", temp_from_end -> next);
+		temp_from_end = temp_from_end -> previous;
+	}
+
 	#endif
 }

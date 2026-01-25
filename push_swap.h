@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/23 19:21:07 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/25 12:33:30 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_list
 	struct s_list	*previous;
 }	t_list;
 
-typedef struct s_task
+typedef struct s_stack
 {
 	t_list	*head;
 	t_list	*tail;
@@ -54,5 +54,9 @@ int		free_all(char **result, int word);
 int		numwords(char const *s, char c);
 int		split_words(char **result, char *s, char c, int word);
 char	**ft_split(char *s, char c);
+
+// OPERATIONS
+
+void	swap(t_list **head, char *swap_type);
 
 #endif
