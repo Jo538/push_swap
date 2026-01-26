@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/26 11:54:59 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 12:29:01 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ int		split_words(char **result, char *s, char c, int word);
 char	**ft_split(char *s, char c);
 
 // OPERATIONS
-
 void	swap_one(t_list **head);
 void	push(t_list **head_a, t_list **head_b);
 void	rotate_one(t_stack **stack);
 void	rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	rrotate_one(t_stack **stack);
+
+// TURK ALGORITHM FUNCTIONS
+int		is_sorted(t_stack *stack);
 
 #endif
