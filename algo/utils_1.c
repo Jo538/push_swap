@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 14:46:51 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 17:37:08 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,38 @@ int	find_target(int num, t_stack *stack)
 	if (!found)
 		return (max);
 	return (b_tar);
+}
+
+int	*create_targets(t_stack *stack_a, t_stack *stack_b)
+{
+	int		*targets;
+	t_list	*temp;
+	int		size;
+	int		i;
+
+	temp = stack_a -> head;
+
+	size = 0;
+	while (temp)
+	{
+		size++;
+		temp = temp -> next;
+	}
+
+	printf("\nsize of targets array: %d\n", size);
+
+	targets = (int *)ft_calloc(size, sizeof(int));
+	if (!targets)
+		return (NULL);
+
+	temp = stack_a -> head;
+
+	i = 0;
+	while (temp)
+	{
+		targets[i] = find_target(temp -> number, stack_b);
+		i++;
+		temp = temp -> next;
+	}
+	return (targets);
 }
