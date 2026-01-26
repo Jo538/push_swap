@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/26 11:20:52 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:41:48 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,8 +387,8 @@ int	main(void)
 	t_list *temp_from_head;
 	t_list *temp_from_end;
 	
-	long list_of_longs[] = {1, 2, 3, 4};
-	int len = 4;
+	long list_of_longs[] = {1};
+	int len = 1;
 	long *array_of_longs = ft_calloc(len, sizeof(long));
 	int i = 0;
 	while (i < len)
@@ -396,7 +396,11 @@ int	main(void)
 		array_of_longs[i] = list_of_longs[i];
 		i++;
 	}
+
 	t_stack *stack = create_stack(array_of_longs, len);
+	// t_stack *stack = malloc(sizeof(t_stack));
+	// stack -> head = NULL;
+	// stack -> tail = NULL;
 	
 	// free(array_of_longs);
 	
@@ -414,7 +418,7 @@ int	main(void)
 		temp_from_head = temp_from_head -> next;
 	}
 
-	rotate(&stack);
+	rotate_one(&stack);
 
 	printf("\n\n%s\n\n", "List after the rotation");
 

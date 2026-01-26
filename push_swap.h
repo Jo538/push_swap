@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/26 11:12:58 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 11:25:31 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	**ft_split(char *s, char c);
 
 void	swap_one(t_list **head);
 void	push(t_list **head_a, t_list **head_b);
-void	rotate(t_stack **stack);
+void	rotate_one(t_stack **stack);
+void	rotate_both(t_stack **stack_a, t_stack **stack_b);
 
 #endif
