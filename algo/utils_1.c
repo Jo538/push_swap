@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 17:37:08 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:27:11 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,22 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+int	find_max_target(int num, t_stack *stack)
+{
+	
+}
+
 int	find_target(int num, t_stack *stack)
 {
 	t_list	*temp;
 	int		b_tar;
+	int		index;
 	int		max;
 	int		found;
 
 	temp = stack -> head;
 	max = temp -> number;
+	index = 0;
 	found = 0;
 
 	while (temp)
