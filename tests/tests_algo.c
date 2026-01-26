@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 15:39:49 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 16:24:23 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,40 @@ int main(void)
 	
 	#ifdef FIND_TARGET_TEST
 
+	int num = 2;	
+	long list_of_longs[] = {-3, 7, 3, 211};
+	int len = 4;
+
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	
+	t_stack *stack = create_stack(array_of_longs, len);
+
+	int target = find_target(num, stack);	
+
+	printf("number A: %d --> %d (B target)\n", num, target);
+
+	#endif
+	
+	#ifdef FIND_TARGETS_TEST
+
 	t_list *temp_from_head_a;
 	t_list *temp_from_end_a;
 	t_list *temp_from_head_b;
 	t_list *temp_from_end_b;	
 
 	
-	long list_of_longs_a[] = {10, -5, 100, 2};
+	long list_of_longs_a[] = {1, 2, 3, 4};
 	int len_a = 4;
 
-	long list_of_longs_b[] = {-3, 7, 3, 211};
-	int len_b = 4;
+	long list_of_longs_b[] = {5, 6, 7};
+	int len_b = 3;
 	
 	long *array_of_longs_a = ft_calloc(len_a, sizeof(long));
 	long *array_of_longs_b = ft_calloc(len_b, sizeof(long));
@@ -72,8 +95,7 @@ int main(void)
 	t_stack *stack_a = create_stack(array_of_longs_a, len_a);
 	t_stack *stack_b = create_stack(array_of_longs_b, len_b);
 
-	int *targets;
-	targets = find_targets(stack_a, stack_b);	
+	int targets[len_a] = find_targets(stack_a, stack_b);	
 	// free(array_of_longs);
 	
 	temp_from_head_a = stack_a -> head;
@@ -84,9 +106,9 @@ int main(void)
 	i = 0;
 	while (temp_from_head_a)
 	{
-		printf("number A: %ld --> %d (B target)\n", temp_from_head_a -> number, targets[i]);
+		printf("number A: %ld\n", temp_from_head_a -> number, targets[i]);
+		printf("next: %p\n\n", temp_from_head_a -> next);
 		temp_from_head_a = temp_from_head_a -> next;
-		i++;
 	}
 
 	#endif
