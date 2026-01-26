@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 15:31:26 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/26 15:39:49 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int main(void)
 	t_list *temp_from_end_b;	
 
 	
-	long list_of_longs_a[] = {1, 2, 3, 4};
+	long list_of_longs_a[] = {10, -5, 100, 2};
 	int len_a = 4;
 
-	long list_of_longs_b[] = {5, 6, 7};
-	int len_b = 3;
+	long list_of_longs_b[] = {-3, 7, 3, 211};
+	int len_b = 4;
 	
 	long *array_of_longs_a = ft_calloc(len_a, sizeof(long));
 	long *array_of_longs_b = ft_calloc(len_b, sizeof(long));
@@ -71,7 +71,9 @@ int main(void)
 	
 	t_stack *stack_a = create_stack(array_of_longs_a, len_a);
 	t_stack *stack_b = create_stack(array_of_longs_b, len_b);
-	
+
+	int *targets;
+	targets = find_targets(stack_a, stack_b);	
 	// free(array_of_longs);
 	
 	temp_from_head_a = stack_a -> head;
@@ -79,17 +81,13 @@ int main(void)
 	temp_from_head_b = stack_b -> head;
 	temp_from_end_b = stack_b -> tail;
 
-	printf("%s\n\n", "List before the push");
-	printf("%s\n\n", "STACK_A");
+	i = 0;
 	while (temp_from_head_a)
 	{
-		printf("address of this node: %p\n", temp_from_head_a);
-		printf("previous: %p\n", temp_from_head_a -> previous);
-		printf("number: %ld\n", temp_from_head_a -> number);
-		printf("next: %p\n\n", temp_from_head_a -> next);
+		printf("number A: %ld --> %d (B target)\n", temp_from_head_a -> number, targets[i]);
 		temp_from_head_a = temp_from_head_a -> next;
+		i++;
 	}
-
 
 	#endif
 
