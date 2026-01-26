@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:34:00 by admin             #+#    #+#             */
-/*   Updated: 2026/01/25 15:03:59 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/26 11:20:52 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,6 +377,69 @@ int	main(void)
 		printf("number: %ld\n", temp_from_end_b -> number);
 		printf("next: %p\n\n", temp_from_end_b -> next);
 		temp_from_end_b = temp_from_end_b -> previous;
+	}
+
+	#endif
+
+	
+	#ifdef ROTATE_TEST
+
+	t_list *temp_from_head;
+	t_list *temp_from_end;
+	
+	long list_of_longs[] = {1, 2, 3, 4};
+	int len = 4;
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	t_stack *stack = create_stack(array_of_longs, len);
+	
+	// free(array_of_longs);
+	
+	temp_from_head = stack -> head;
+	temp_from_end = stack -> tail;
+
+	printf("%s\n\n", "List BEFORE the rotation");	
+	
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %ld\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
+		temp_from_head = temp_from_head -> next;
+	}
+
+	rotate(&stack);
+
+	printf("\n\n%s\n\n", "List after the rotation");
+
+	printf("\n\n%s\n\n", "FROM HEAD");
+	
+	temp_from_head = stack -> head;
+	while (temp_from_head)
+	{
+		printf("address of this node: %p\n", temp_from_head);
+		printf("previous: %p\n", temp_from_head -> previous);
+		printf("number: %ld\n", temp_from_head -> number);
+		printf("next: %p\n\n", temp_from_head -> next);
+		temp_from_head = temp_from_head -> next;
+	}
+
+	printf("\n\n%s\n\n", "FROM TAIL");
+
+	temp_from_end = stack -> tail;
+	while (temp_from_end)
+	{
+		printf("address of this node: %p\n", temp_from_end);	
+		printf("previous: %p\n", temp_from_end -> previous);
+		printf("number: %ld\n", temp_from_end -> number);
+		printf("next: %p\n\n", temp_from_end -> next);
+		temp_from_end = temp_from_end -> previous;
 	}
 
 	#endif
