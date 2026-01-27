@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/27 13:40:53 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:46:31 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,58 +114,4 @@ int	cost_to_top(int index_target, int index_a, int size_a, int size_b)
 	else
 		cost_b = size_b - index_target;
 	return (cost_a + cost_b);
-}
-
-int	find_cheapest(t_pair *array, int size_a)
-{
-	int	min;
-	int	index_min;
-	int	i;
-
-	min = size_a;
-	index_min = -1;
-	i = 0;
-
-	while (i < size_a)
-	{
-		if (array[i].all_cost < min)
-		{
-			min = array[i].all_cost;
-			index_min = i;
-		}
-		i++;
-	}
-	return (index_min);
-}
-
-t_stack	*turk(t_stack	*stack_a, t_stack *stack_b)
-{
-	int		size_a;
-	int		size_b;
-	t_pair	*array;
-	int		i;
-	t_list	*temp_a;
-
-	size_a = size_stack(stack_a);
-	size_b = size_stack(stack_b);
-
-	array = (t_pair *)ft_calloc(size_a, sizeof(t_pair));
-	if (!array)
-		return (NULL);
-
-	i = 0;
-	temp_a = stack_a -> head;
-	while (i < size_a)
-	{
-		array[i].target_index = find_target(temp_a -> number, stack_b);
-		array[i].all_cost = cost_to_top(array[i].target_index, i, size_a, size_b);
-
-		printf("number A: %ld --> %d (B target) --> %d (cost to top)\n", temp_a -> number, array[i].target_index, array[i].all_cost);
-		
-		temp_a = temp_a -> next;
-		i++;
-	}
-
-	i = find_cheapest(array, size_a);
-	return (NULL);
 }
