@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/27 10:08:48 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:13:32 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	rrotate_one(t_stack **stack);
 
 // TURK ALGORITHM FUNCTIONS
 int		is_sorted(t_stack *stack);
+int		size_stack(t_stack *stack);
 int		find_target(int num, t_stack *stack);
 int		find_max_target(t_stack *stack);
 int		*create_targets(t_stack *stack_a, t_stack *stack_b);
+int		*cost_to_tops(int *targets, t_stack *stack, int size_a, int size_b);
 
 #endif
