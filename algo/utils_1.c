@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/27 11:17:52 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:40:53 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,69 +100,72 @@ int	find_target(int num, t_stack *stack)
 	return (index_btar);
 }
 
-int	*create_targets(t_stack *stack_a, t_stack *stack_b)
+int	cost_to_top(int index_target, int index_a, int size_a, int size_b)
 {
-	int		*targets;
-	t_list	*temp;
-	int		size;
-	int		i;
-
-	temp = stack_a -> head;
-
-	size = 0;
-	while (temp)
-	{
-		size++;
-		temp = temp -> next;
-	}
-
-	printf("\nsize of targets array: %d\n", size);
-
-	targets = (int *)ft_calloc(size, sizeof(int));
-	if (!targets)
-		return (NULL);
-
-	temp = stack_a -> head;
-
-	i = 0;
-	while (temp)
-	{
-		targets[i] = find_target(temp -> number, stack_b);
-		i++;
-		temp = temp -> next;
-	}
-	return (targets);
-}
-
-int	*cost_to_tops(int *targets, t_stack *stack, int size_a, int size_b)
-{
-	t_list	*temp;
-	int		*cost_to_top;
 	int		cost_a;
 	int		cost_b;
+
+	if (index_a < (size_a / 2 + 1))
+		cost_a = index_a;
+	else
+		cost_a = size_a - index_a;
+	if (index_target < (size_b / 2 + 1))
+		cost_b = index_target;
+	else
+		cost_b = size_b - index_target;
+	return (cost_a + cost_b);
+}
+
+int	find_cheapest(t_pair *array, int size_a)
+{
+	int	min;
+	int	index_min;
+	int	i;
+
+	min = size_a;
+	index_min = -1;
+	i = 0;
+
+	while (i < size_a)
+	{
+		if (array[i].all_cost < min)
+		{
+			min = array[i].all_cost;
+			index_min = i;
+		}
+		i++;
+	}
+	return (index_min);
+}
+
+t_stack	*turk(t_stack	*stack_a, t_stack *stack_b)
+{
+	int		size_a;
+	int		size_b;
+	t_pair	*array;
 	int		i;
+	t_list	*temp_a;
 
-	temp = stack -> head;
+	size_a = size_stack(stack_a);
+	size_b = size_stack(stack_b);
 
-	cost_to_top = (int *)ft_calloc(size_a, sizeof(int));
-	if (!cost_to_top)
+	array = (t_pair *)ft_calloc(size_a, sizeof(t_pair));
+	if (!array)
 		return (NULL);
 
 	i = 0;
-	temp = stack -> head;
-	while (temp)
+	temp_a = stack_a -> head;
+	while (i < size_a)
 	{
-		if (i < (size_a / 2 + 1))
-			cost_a = i;
-		else
-			cost_a = size_a - i;
-		if (targets[i] < (size_b / 2 + 1))
-			cost_b = targets[i];
-		else
-			cost_b = size_b - targets[i];
-		cost_to_top[i] = cost_a + cost_b;
-		temp = temp -> next;
+		array[i].target_index = find_target(temp_a -> number, stack_b);
+		array[i].all_cost = cost_to_top(array[i].target_index, i, size_a, size_b);
+
+		printf("number A: %ld --> %d (B target) --> %d (cost to top)\n", temp_a -> number, array[i].target_index, array[i].all_cost);
+		
+		temp_a = temp_a -> next;
 		i++;
 	}
-	return (cost_to_top);
+
+	i = find_cheapest(array, size_a);
+	return (NULL);
 }

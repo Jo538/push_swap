@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/27 11:13:32 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:30:36 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef struct s_stack
 	t_list	*head;
 	t_list	*tail;
 }	t_stack;
+
+typedef struct s_pair
+{
+	int	target_index;
+	int	all_cost;
+}	t_pair;
+
 
 // MAIN FUNCTION //
 t_stack	*parser(int argc, char **argv);
@@ -66,8 +73,9 @@ void	rrotate_one(t_stack **stack);
 int		is_sorted(t_stack *stack);
 int		size_stack(t_stack *stack);
 int		find_target(int num, t_stack *stack);
+int		find_cheapest(t_pair *array, int size_a);
 int		find_max_target(t_stack *stack);
-int		*create_targets(t_stack *stack_a, t_stack *stack_b);
-int		*cost_to_tops(int *targets, t_stack *stack, int size_a, int size_b);
+int		cost_to_top(int index_target, int index_a, int size_a, int size_b);
+t_stack	*turk(t_stack	*stack_a, t_stack *stack_b);
 
 #endif
