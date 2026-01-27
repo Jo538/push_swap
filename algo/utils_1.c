@@ -6,7 +6,7 @@
 /*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 18:27:11 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/27 10:08:40 by jchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,58 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-int	find_max_target(int num, t_stack *stack)
+int	find_max_target(t_stack *stack)
 {
-	
+	t_list	*temp;
+	int		max;
+	int		i;
+	int		index_max;
+
+	temp = stack -> head;
+	max = temp -> number;
+	i = 0;
+	index_max = 0;
+
+	while (temp)
+	{
+		if (temp -> number > max)
+		{
+			max = temp -> number;
+			index_max = i;
+		}
+		temp = temp -> next;
+		i++;
+	}
+	return (index_max);
 }
 
 int	find_target(int num, t_stack *stack)
 {
 	t_list	*temp;
 	int		b_tar;
-	int		index;
-	int		max;
+	int		i;
+	int		index_btar;
 	int		found;
 
 	temp = stack -> head;
-	max = temp -> number;
-	index = 0;
+	i = 0;
+	index_btar = 0;
 	found = 0;
 
 	while (temp)
 	{
-		if (temp -> number > max)
-			max = temp -> number;
 		if ((temp -> number < num) && (!found || (temp -> number > b_tar)))
 		{
 			b_tar = temp -> number;
+			index_btar = i;
 			found = 1;
 		}
 		temp = temp -> next;
+		i++;
 	}
 	if (!found)
-		return (max);
-	return (b_tar);
+		return (find_max_target(stack));
+	return (index_btar);
 }
 
 int	*create_targets(t_stack *stack_a, t_stack *stack_b)
