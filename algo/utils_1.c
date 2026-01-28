@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:13:37 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/28 17:47:42 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 20:08:44 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	find_min_target(t_stack *stack)
 	return (index_min);
 }
 
-int	find_target_a(int num, t_stack *stack)
+int	find_target_b(int num, t_stack *stack)
 {
 	t_list	*temp;
 	int		b_tar;
@@ -123,49 +123,4 @@ int	find_target_a(int num, t_stack *stack)
 	if (!found)
 		return (find_max_target(stack));
 	return (index_btar);
-}
-
-int	find_target_b(int num, t_stack *stack)
-{
-	t_list	*temp;
-	int		b_tar;
-	int		i;
-	int		index_btar;
-	int		found;
-
-	temp = stack -> head;
-	i = 0;
-	index_btar = 0;
-	found = 0;
-
-	while (temp)
-	{
-		if ((temp -> number > num) && (!found || (temp -> number > b_tar)))
-		{
-			b_tar = temp -> number;
-			index_btar = i;
-			found = 1;
-		}
-		temp = temp -> next;
-		i++;
-	}
-	if (!found)
-		return (find_min_target(stack));
-	return (index_btar);
-}
-
-int	cost_to_top(int index_target, int index_a, int size_a, int size_b)
-{
-	int		cost_a;
-	int		cost_b;
-
-	if (index_a < (size_a / 2 + 1))
-		cost_a = index_a;
-	else
-		cost_a = size_a - index_a;
-	if (index_target < (size_b / 2 + 1))
-		cost_b = index_target;
-	else
-		cost_b = size_b - index_target;
-	return (cost_a + cost_b);
 }

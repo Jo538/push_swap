@@ -23,7 +23,8 @@ void	swap_one(t_list **head, char flag)
 
 	// Link node 1 and node 3 together
 	temp -> next = (*head)-> next;
-	temp -> next -> previous = temp;
+	if (temp -> next)
+		temp -> next -> previous = temp;
 
 	// Link node 1 and node 2 back together
 	temp -> previous = *head;

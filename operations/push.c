@@ -12,25 +12,34 @@
 
 #include "../push_swap.h"
 
-// Push from head_b to head_a
+// Push from stack_b to stack_a
 
-void	push(t_list **head_a, t_list **head_b, char flag)
+void	push(t_stack **stack_a, t_stack **stack_b, char flag)
 {
 	t_list *temp;
 
-	if (!(*head_b))
+	if (!(*stack_b) || !(*stack_b)->head)
 		return ;
-	temp = *head_b; // create temp pointer to first node in stack_b
 	
-	// Link head_b to the second node in stack_b
-	(*head_b) = (*head_b)-> next;
-	(*head_b)-> previous = NULL; 
-
-	// Link the fist node in stack_a and stack_b
-	temp -> next = *head_a;
-	*head_a = temp;
-	(*head_a)-> next -> previous = *head_a;
-	(*head_a)-> previous = NULL;
+	temp = (*stack_b)->head;
+	
+	// Update stack_b head to the second node
+	(*stack_b)->head = (*stack_b)->head->next;
+	if ((*stack_b)->head)
+		(*stack_b)->head->previous = NULL;
+	else
+		(*stack_b)->tail = NULL; // Stack B is now empty
+	
+	// Link temp node to stack_a
+	temp->next = (*stack_a)->head;
+	temp->previous = NULL;
+	
+	if ((*stack_a)->head)
+		(*stack_a)->head->previous = temp;
+	else
+		(*stack_a)->tail = temp; // Stack A was empty
+	
+	(*stack_a)->head = temp;
 
 	if (flag == 'A')
 		write(1, "pa\n", 3);

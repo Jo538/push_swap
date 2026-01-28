@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/28 16:29:04 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 19:21:42 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,50 @@ int main(void)
 	int result = find_cheapest(cost_to_top, size);
 	printf("%d\n", result);
 	
+
+	#endif
+
+	#ifdef TURK_ALGO_TEST
+
+	t_list *temp;
+	
+	long list_of_longs[] = {5, 2, 8, 1, 9, 3, 7, 4, 6};
+	int len = 9;
+
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	
+	t_stack *stack_a = create_stack(array_of_longs, len);
+	t_stack *stack_b = ft_calloc(1, sizeof(t_stack));
+
+	printf("Initial stack A:\n");
+	temp = stack_a->head;
+	i = 0;
+	while (temp)
+	{
+		printf("  [%d]: %ld\n", i++, temp->number);
+		temp = temp->next;
+	}
+	printf("\n");
+
+	turk_sort(&stack_a, &stack_b);
+
+	printf("\nFinal stack A (should be sorted):\n");
+	temp = stack_a->head;
+	i = 0;
+	while (temp)
+	{
+		printf("  [%d]: %ld\n", i++, temp->number);
+		temp = temp->next;
+	}
+
+	printf("\nIs sorted: %s\n", is_sorted(stack_a) ? "YES" : "NO");
 
 	#endif
 

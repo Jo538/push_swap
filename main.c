@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:48 by admin             #+#    #+#             */
-/*   Updated: 2026/01/28 18:11:45 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 20:37:27 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 		return ;
 
 	// Start by pushing the first 2 elements of A to B
-	push(&(*stack_b) -> head, &(*stack_a) -> head, 'B');
-	push(&(*stack_b) -> head, &(*stack_a) -> head, 'B');
+	push(stack_b, stack_a, 'B');
+	push(stack_b, stack_a, 'B');
 
 	// Repeat this process until there are only 3 numbers left in STACK A
 	size_a = size_stack(*stack_a);
@@ -62,16 +62,17 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 	{
 		// Create the array of pairs (b_tar, all_cost). 
 		// The array size is count of numbers in stack a
-		array = compute_pairs(*stack_a, *stack_b, 'A');
+		array = compute_pairs(*stack_a, *stack_b, 'B');
 		
 		// Find cheapest pair
 		min = find_cheapest(array, size_a);
 
 		// Move up chosen pair, cheapest one
-		move_to_top(stack_a, stack_b, array, min);
+		move_to_top(stack_a, stack_b, array, min, 'B');
 
 		// Push A to B
-		push(&(*stack_b) -> head, &(*stack_a) -> head, 'B');
+		push(stack_b, stack_a, 'B');
+		free(array);
 		size_a--;
 	}
 	
@@ -85,32 +86,34 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 	while (i < size_b)
 	{
 		// Create the array of pairs (b_tar, all_cost). 
-		// The array size is count of numbers in stack a
-		array = compute_pairs(*stack_b, *stack_a, 'B');
+		// The array size is count of numbers in stack b
+		array = compute_pairs(*stack_b, *stack_a, 'A');
 		
 		// Find cheapest pair
-		min = find_cheapest(array, size_b);
+		int current_size_b = size_stack(*stack_b);
+		min = find_cheapest(array, current_size_b);
 
 		// Move up chosen pair, cheapest one
-		move_to_top(stack_b, stack_a, array, min);
+		move_to_top(stack_b, stack_a, array, min, 'A');
 
 		// Push B to A
-		push(&(*stack_a) -> head, &(*stack_b) -> head, 'A');
+		push(stack_a, stack_b, 'A');
+		free(array);
 		i++;
 	}
 	
+	// Final rotation: move minimum to top of stack A
+	final_rotation(stack_a);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_list	*temp;
 
-	if (argc == 1) // case where no argument is passed at execution time
+	if (argc == 1)
 		return (-1);
 	
-	// create STACK A and STACK B (B doesn't contain any number at the start)
 	stack_a = parser(argc, argv);
 	stack_b = ft_calloc(1, sizeof(t_stack));
 	if (!stack_b)
@@ -121,12 +124,8 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (-1);
 	}
-	temp = stack_a -> head;
-	while (temp)
-	{
-		printf("%ld\n", temp -> number);
-		temp = temp -> next;
-	}
+	
 	turk_sort(&stack_a, &stack_b);
+	
 	return (0);
 }
