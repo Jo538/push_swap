@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/27 13:30:36 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:35:59 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	push(t_list **head_a, t_list **head_b);
 void	rotate_one(t_stack **stack);
 void	rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	rrotate_one(t_stack **stack);
+void	rrotate_both(t_stack **stack_a, t_stack **stack_b);
 
 // TURK ALGORITHM FUNCTIONS
 int		is_sorted(t_stack *stack);
@@ -76,6 +77,11 @@ int		find_target(int num, t_stack *stack);
 int		find_cheapest(t_pair *array, int size_a);
 int		find_max_target(t_stack *stack);
 int		cost_to_top(int index_target, int index_a, int size_a, int size_b);
-t_stack	*turk(t_stack	*stack_a, t_stack *stack_b);
+t_pair	*compute_pairs(t_stack	*stack_a, t_stack *stack_b);
+int		operation_type(int index, int size);
+char	min_index(int index_a, int target_b);
+void	move_common(t_stack **stack_a, t_stack **stack_b, int reps, int ops);
+void	move_single(t_stack **stack, int reps, int ops);
+void	move_to_top(t_stack **stack_a, t_stack **stack_b, t_pair *array);
 
 #endif

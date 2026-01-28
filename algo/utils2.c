@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:46:36 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/27 16:31:31 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:53:26 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ t_pair	*compute_pairs(t_stack	*stack_a, t_stack *stack_b)
 	{
 		array[i].target_index = find_target(temp_a -> number, stack_b);
 		array[i].all_cost = cost_to_top(array[i].target_index, i, size_a, size_b);
-
-		printf("number A: %ld --> %d (B target) --> %d (cost to top)\n", temp_a -> number, array[i].target_index, array[i].all_cost);
-		
 		temp_a = temp_a -> next;
 		i++;
 	}

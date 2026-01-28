@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tests_algo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/27 13:38:52 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/28 11:52:54 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ int main(void)
 
 	#endif
 
-	#ifdef TURK_TEST
+	#ifdef MOVE_TO_TOP_TEST
 
+	t_list *temp_a;
+	t_list *temp_b;
 	
 	long list_of_longs_a[] = {10, -5, 100, 2};
 	int len_a = 4;
@@ -115,7 +117,56 @@ int main(void)
 	t_stack *stack_a = create_stack(array_of_longs_a, len_a);
 	t_stack *stack_b = create_stack(array_of_longs_b, len_b);
 	
-	turk(stack_a, stack_b);
+	
+	temp_a = stack_a -> head;
+	temp_b = stack_b -> head;
+
+	printf("%s\n\n", "STACK A BEFORE");
+
+	i = 0;
+	while (temp_a)
+	{
+		printf("index %d: %ld\n", i, temp_a -> number);
+		temp_a = temp_a -> next;
+		i++;
+	}
+	
+	printf("\n\n%s\n\n", "STACK B BEFORE");
+
+	i = 0;
+	while (temp_b)
+	{
+		printf("index %d: %ld\n", i, temp_b -> number);
+		temp_b = temp_b -> next;
+		i++;
+	}
+	
+	t_pair *array = compute_pairs(stack_a, stack_b);
+
+	move_to_top(&stack_a, &stack_b, array);
+
+	temp_a = stack_a -> head;
+	temp_b = stack_b -> head;
+	
+	printf("\n\n%s\n\n", "STACK A AFTER");
+
+	i = 0;
+	while (temp_a)
+	{
+		printf("index %d: %ld\n", i, temp_a -> number);
+		temp_a = temp_a -> next;
+		i++;
+	}
+	
+	printf("\n\n%s\n\n", "STACK B AFTER");
+
+	i = 0;
+	while (temp_b)
+	{
+		printf("index %d: %ld\n", i, temp_b -> number);
+		temp_b = temp_b -> next;
+		i++;
+	}
 
 	#endif
 }
