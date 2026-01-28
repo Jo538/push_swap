@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 11:18:09 by admin             #+#    #+#             */
-/*   Updated: 2026/01/28 18:23:23 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 22:31:19 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,14 @@ void	swap_one(t_list **head, char flag)
 
 	if (!(*head) || !((*head)-> next))
 		return ;
-	temp = *head; // create temp node that points to first node
-	*head = (*head) -> next; // have head point to second node
-
-	// Link node 1 and node 3 together
+	temp = *head;
+	*head = (*head) -> next;
 	temp -> next = (*head)-> next;
 	if (temp -> next)
 		temp -> next -> previous = temp;
-
-	// Link node 1 and node 2 back together
 	temp -> previous = *head;
 	(*head)-> next = temp;
 	(*head)-> previous = NULL;
-
 	if (flag == 'C')
 		return ;
 	if (flag == 'A')

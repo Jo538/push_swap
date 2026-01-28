@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/28 19:21:42 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 21:22:47 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int main(void)
 
 	t_list *temp;
 	
-	long list_of_longs[] = {5, 2, 8, 1, 9, 3, 7, 4, 6};
-	int len = 9;
+	long list_of_longs[] = {1, 22, 4, -100};
+	int len = 4;
 
 	long *array_of_longs = ft_calloc(len, sizeof(long));
 
