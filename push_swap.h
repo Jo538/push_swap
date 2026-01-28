@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 17:46:40 by admin             #+#    #+#             */
-/*   Updated: 2026/01/28 11:35:59 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 18:10:19 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_pair
 
 // MAIN FUNCTION //
 t_stack	*parser(int argc, char **argv);
-void	turk_sort(t_list **stack_a);
+void	turk_sort(t_stack **stack_a, t_stack **stack_b);
 
 // PARSER FUNCTION //
 char	*ft_strjoin(int argc, char **argv);
@@ -64,7 +64,8 @@ char	**ft_split(char *s, char c);
 
 // OPERATIONS
 void	swap_one(t_list **head);
-void	push(t_list **head_a, t_list **head_b);
+void	swap_both(t_list **head_a, t_list **head_b);
+void	push(t_list **head_a, t_list **head_b, char flag);
 void	rotate_one(t_stack **stack);
 void	rotate_both(t_stack **stack_a, t_stack **stack_b);
 void	rrotate_one(t_stack **stack);
@@ -73,15 +74,20 @@ void	rrotate_both(t_stack **stack_a, t_stack **stack_b);
 // TURK ALGORITHM FUNCTIONS
 int		is_sorted(t_stack *stack);
 int		size_stack(t_stack *stack);
-int		find_target(int num, t_stack *stack);
+int		find_target_a(int num, t_stack *stack);
+int		find_target_b(int num, t_stack *stack);
 int		find_cheapest(t_pair *array, int size_a);
 int		find_max_target(t_stack *stack);
+int		find_min_target(t_stack *stack);
 int		cost_to_top(int index_target, int index_a, int size_a, int size_b);
-t_pair	*compute_pairs(t_stack	*stack_a, t_stack *stack_b);
+t_pair	*compute_pairs(t_stack	*stack_a, t_stack *stack_b, char flag);
+void	sort_three(t_stack **stack_a);
+
+// MOVE TO TOP FUNCTION + DEPENDENCIES
+void	move_to_top(t_stack **stack_a, t_stack **stack_b, t_pair *array, int min);
 int		operation_type(int index, int size);
 char	min_index(int index_a, int target_b);
 void	move_common(t_stack **stack_a, t_stack **stack_b, int reps, int ops);
 void	move_single(t_stack **stack, int reps, int ops);
-void	move_to_top(t_stack **stack_a, t_stack **stack_b, t_pair *array);
 
 #endif

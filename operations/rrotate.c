@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rrotate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchartie <jchartie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 11:43:43 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/26 12:08:41 by jchartie         ###   ########.fr       */
+/*   Updated: 2026/01/28 18:22:35 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rrotate_one(t_stack **stack)
+void	rrotate_one(t_stack **stack, char flag)
 {
 	t_list	*temp_head;
 	t_list	*temp_tail;
@@ -40,11 +40,18 @@ void	rrotate_one(t_stack **stack)
 
 	// Update previous pointer of the first node to the last node
 	temp_head -> previous = (*stack)-> head;
+
+	if (flag == 'C')
+		return ;
+	if (flag == 'A')
+		write(1, "rra\n", 4);
+	else	
+		write(1, "rrb\n", 4);
 }
 
 void	rrotate_both(t_stack **stack_a, t_stack **stack_b)
 {
-	rrotate_one(stack_a);
-	rrotate_one(stack_b);
+	rrotate_one(stack_a, 'C');
+	rrotate_one(stack_b, 'C');
 	write(1, "rrr\n", 4);
 }

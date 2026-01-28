@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:31:40 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/28 11:56:04 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 13:10:01 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,16 @@ void	move_single(t_stack **stack, int reps, int ops)
 	}
 }
 
-void	move_to_top(t_stack **stack_a, t_stack **stack_b, t_pair *array)
+void	move_to_top(t_stack **stack_a, t_stack **stack_b, t_pair *array, int index_a)
 {
 	int		size_a;
 	int		size_b;
 	int		ops_a;
 	int		ops_b;
-	int		index_a;
 	int		min;
 
 	size_a = size_stack(*stack_a);
 	size_b = size_stack(*stack_b);
-
-	index_a = find_cheapest(array, size_a);
 
 	ops_a = operation_type(index_a, size_a);
 	ops_b = operation_type(array[index_a].target_index, size_b);

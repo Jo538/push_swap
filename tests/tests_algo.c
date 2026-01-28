@@ -6,7 +6,7 @@
 /*   By: admin <admin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:20:23 by jchartie          #+#    #+#             */
-/*   Updated: 2026/01/28 11:52:54 by admin            ###   ########.fr       */
+/*   Updated: 2026/01/28 16:29:04 by admin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,38 @@ int main(void)
 	{
 		printf("index %d: %ld\n", i, temp_b -> number);
 		temp_b = temp_b -> next;
+		i++;
+	}
+
+	#endif
+
+	#ifdef SORT_THREE_TEST
+
+	t_list *temp;
+	
+	long list_of_longs[] = {3, 5, 4};
+	int len = 3;
+
+	long *array_of_longs = ft_calloc(len, sizeof(long));
+
+	int i = 0;
+	while (i < len)
+	{
+		array_of_longs[i] = list_of_longs[i];
+		i++;
+	}
+	
+	t_stack *stack = create_stack(array_of_longs, len);
+
+	sort_three(&stack);
+
+	temp = stack -> head;
+
+	i = 0;
+	while (temp)
+	{
+		printf("index %d: %ld\n", i, temp -> number);
+		temp = temp -> next;
 		i++;
 	}
 
